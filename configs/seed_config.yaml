@@ -1,0 +1,63 @@
+model: 'hdfnn_ao' # 'base' 'hdfnn' 'hdfnn_fn' 'hdfnn_ao' 'hdfnn_dnn'
+
+n_run: 1
+n_kfolds: 5
+
+n_agents: 5
+n_agents_list: []
+
+n_rules: 1
+n_rules_list: []
+
+dataset_list:
+  ['seed_c12_e1_subj1', 'seed_c12_e1_subj2', 'seed_c12_e1_subj3', 'seed_c12_e1_subj4', 'seed_c12_e1_subj5',
+  'seed_c12_e1_subj6', 'seed_c12_e1_subj7', 'seed_c12_e1_subj8', 'seed_c12_e1_subj9', 'seed_c12_e1_subj10',
+  'seed_c12_e1_subj11', 'seed_c12_e1_subj12', 'seed_c12_e1_subj13', 'seed_c12_e1_subj14', 'seed_c12_e1_subj15',
+   'seed_c12_e2_subj1', 'seed_c12_e2_subj2', 'seed_c12_e2_subj3', 'seed_c12_e2_subj4', 'seed_c12_e2_subj5',
+   'seed_c12_e2_subj6', 'seed_c12_e2_subj7', 'seed_c12_e2_subj8', 'seed_c12_e2_subj9', 'seed_c12_e2_subj10',
+   'seed_c12_e2_subj11', 'seed_c12_e2_subj12', 'seed_c12_e2_subj13', 'seed_c12_e2_subj14', 'seed_c12_e2_subj15',
+   'seed_c12_e3_subj1', 'seed_c12_e3_subj2', 'seed_c12_e3_subj3', 'seed_c12_e3_subj4', 'seed_c12_e3_subj5',
+   'seed_c12_e3_subj6', 'seed_c12_e3_subj7', 'seed_c12_e3_subj8', 'seed_c12_e3_subj9', 'seed_c12_e3_subj10',
+   'seed_c12_e3_subj11', 'seed_c12_e3_subj12', 'seed_c12_e3_subj13', 'seed_c12_e3_subj14', 'seed_c12_e3_subj15']
+dataset_list_all:
+  ['abalone', 'airfoil', 'bikesharing',
+   'blog', 'bodyfat', 'CASP', 'CCPP', 'eegDual_sub1',
+   'housing', 'HRSS_anomalous_optimized', 'HRSS_anomalous_standard',
+   'kc_house', 'motor_temperature', 'quake', 'skills',
+   'statlib_calhousing', 'strength', 'telemonitoring', 'yacht']
+
+mu_current: 0.1
+mu_list:
+  [0.0001, 0.001, 0.01, 0.1]
+mu1_current: 0.1
+mu1_list:
+  [0.0001, 0.001, 0.01, 0.1]
+
+rho: 1
+
+#tool functions
+h_computer: 'normal' # 'base' 'normal'
+fnn_solver: 'normal' # 'base' 'normal' 'sigmoid'
+loss_fun: 'likely'  # 'base' 'rmse' 'nrmse' 'mse' 'map' 'likely'
+rules: 'kmeans' # 'kmeans' 'fuzzyc'
+patition_strategy: 'kmeans'
+
+#feature splitor
+feature_seperator: 'slice_window' # 'stride_window' 'slice_window' 'random_pick' 'no_seperate'
+window_size: 5 # 5 bands
+n_level: 2
+# while using stride_window, initiate following parameters
+stride_len: 6 #6 channel
+# while feature_seperator is slice_window, initiate following parameters
+step: 5
+# while feature_seperator is random_pick, initiate following parameters
+n_repeat_select: 30
+
+# rule number tree
+tree_rule_spesify: 'false' # 'false' 'true'
+n_rule_pos: [2, 0] # 0 stands for all, number(1...5) denotes for index
+n_rule_spesify: 1
+
+
+#logger
+log_to_file: 'false' # 'false' 'true'
