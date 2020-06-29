@@ -1,0 +1,24 @@
+model: 'hdfnn_ao' # 'base' 'hdfnn' 'hdfnn_fn' 'hdfnn_ao' 'hdfnn_dnn'
+
+n_run: 1
+n_batch: 300
+n_epoch: 500
+n_kfolds: 5
+n_agents: 2
+n_rules: 10
+n_rules_list: []
+n_brunches: 3
+lr: 0.0001
+
+dataset_folder: 'CASP' # each kind of dataset has a same prefix name, dataset is the prefix
+dataset_list:
+  ['CASP']
+dataset_list_all:
+  ['abalone', 'airfoil', 'bikesharing',
+   'blog', 'bodyfat', 'CASP', 'CCPP', 'eegDual_sub1',
+   'housing', 'HRSS_anomalous_optimized', 'HRSS_anomalous_standard',
+   'kc_house', 'motor_temperature', 'quake', 'skills',
+   'statlib_calhousing', 'strength', 'telemonitoring', 'yacht']
+
+#logger
+log_to_file: 'false' # 'false' 'true'

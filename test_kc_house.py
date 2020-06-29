@@ -7,7 +7,7 @@ import torch
 # Dataset configuration
 # init the parameters
 param_config = ParamConfig()
-param_config.config_parse('hrss_motor')
+param_config.config_parse('kc_house_config')
 n_rule_list = torch.arange(1, 16, 1)
 param_config.n_rules_list = n_rule_list
 

@@ -20,7 +20,7 @@ from datetime import datetime
 from loss_utils import LossFunc, Map, LikelyLoss
 from bp import BP_HDFNN, BP_HDFNN_C, BP_HFNN, BP_FNN, BP_FNN_S, BP_FNN_L, BP_FNN_CE, BP_FNN_M
 from dataset import DatasetFNN
-from model import MLP, dev_network_s, dev_network_sr
+from model import MLP, dev_network_s, dev_network_sr, dev_network_s_r
 
 
 def svc(train_fea: torch.Tensor, test_fea: torch.Tensor, train_gnd: torch.Tensor,
@@ -663,6 +663,26 @@ def mlp_run(param_config: ParamConfig, train_data: Dataset, test_data: Dataset):
         param_config.log.info(f"loss of test data using SVM: {valid_losses}")
     test_map = torch.tensor(valid_acc_list).mean()
     return test_map, train_losses
+
+
+def mlp_run_r(train_data: Dataset, test_data: Dataset):
+    """
+    todo: this is the method for distribute fuzzy Neuron network
+    :param train_data: training dataset
+    :param test_data: test dataset
+    :return:
+    """
+
+    model = dev_network_s_r(train_data.fea.shape[1])
+    # compile the keras model
+    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+    # fit the keras model on the dataset 78.5%
+    model.fit(train_data.fea.numpy(), train_data.gnd.numpy(), epochs=100, batch_size=500)
+    # test_y_binary = to_categorical(test_data.gnd.numpy())
+    loss_train, _ = model.evaluate(train_data.fea.numpy(), train_data.gnd.numpy())
+    print(f"keras test loss : {loss_train:.4f}%")
+    loss_test, _ = model.evaluate(test_data.fea.numpy(), test_data.gnd.numpy())
+    print(f"keras test loss : {loss_test:.4f}%")
 
 
 def bp_hdfnn_kfolds(param_config: ParamConfig, dataset: Dataset):
